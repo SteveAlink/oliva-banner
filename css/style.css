@@ -1,0 +1,17 @@
+#oliva-banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #6A720C;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    z-index: 9999;
+}
+#oliva-banner button {
+    margin-left: 15px;
+    padding: 5px 10px;
+    background: #BCC915;
+    border: none;
+    cursor: pointer;
+}
