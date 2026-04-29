@@ -1,0 +1,10 @@
+{
+    "enabled": true,
+    "showCloseButton": true,
+    "rememberDismissal": true,
+    "bannerType": "info",
+    "bannerPosition": "bottom",
+    "customCssClass": "",
+    "linkUrl": "",
+    "linkTarget": "_self"
+}
