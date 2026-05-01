@@ -29,7 +29,13 @@ This results in showing the banner each day. This is especially handy if you hav
 
 ## Important
 This is a  plugin for a simple banner, not a full fledge bannering system with showing date ranges or something like that.
-The banner is shown in the footer
+The banner is shown in the footer.
+
+## Preview of Settings
+In the settings is an additional tab shown. It looks, in English, like this.
+<img width="991" height="672" alt="WcmsOlivaBannerPreviewSettings" src="https://github.com/user-attachments/assets/884a2d6f-fef5-48d1-b812-21bdf634b243" />
+
+The language depents on the language for admin as set on the Security Tab.
 
 ## Versions
 1.0.2 30-Apr-2026 More languages included. Backend reacts to language setting in Security tab
