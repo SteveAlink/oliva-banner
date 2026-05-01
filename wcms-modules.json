@@ -6,7 +6,7 @@
             "repo": "https://github.com/SteveAlink/oliva-banner/tree/main",
             "zip": "https://github.com/SteveAlink/oliva-banner/archive/main.zip",
             "summary": "A generic banner system for announcements, promo bars or temporary notices.",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "image": "https://raw.githubusercontent.com/SteveAlink/oliva-banner/main/preview.jpg"
         }
     }
