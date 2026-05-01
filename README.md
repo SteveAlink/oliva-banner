@@ -38,5 +38,5 @@ In the settings is an additional tab shown. It looks, in English, like this.
 The language depents on the language for admin as set on the Security Tab.
 
 ## Versions
-1.0.2 30-Apr-2026 More languages included. Backend reacts to language setting in Security tab
+1.1.0 01-May-2026 More languages included. Backend reacts to language setting in Security tab  
 1.0.1 29-Apr-2026 Initial version
