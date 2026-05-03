@@ -1,4 +1,11 @@
 <?php
+/**
+ * oliva-banner - simple banner plugin for WonderCMS.
+ * Prepared by Steve Alink for Oliva Solutions
+ *
+ * Shows a banner with information until the visitor accepts it.
+ * Place this folder in: /plugins/oliva-banner/
+ */
 
 class OlivaBanner
 {
@@ -131,6 +138,99 @@ class OlivaBanner
         return $this->Wcms->get('config', 'olivaLanguage');
     }
 
+    private function getAvailablePages(): array
+    {
+        $pages = [];
+
+        // Prefer menuItems because this contains the name as maintained by the admin
+        // and includes pages hidden from the menu.
+        $menuItems = $this->Wcms->get('config', 'menuItems');
+
+        if (is_object($menuItems) || is_array($menuItems)) {
+            $this->collectMenuPages($menuItems, $pages);
+        }
+
+        // Fallback: if menuItems is unavailable, use pages from database.js.
+        // This uses title as the visible label.
+        if (empty($pages)) {
+            $dbPages = $this->Wcms->get('pages');
+
+            if (is_object($dbPages) || is_array($dbPages)) {
+                $this->collectDatabasePages($dbPages, $pages);
+            }
+        }
+
+        if (isset($pages['404'])) {
+            unset($pages['404']);
+        }
+
+        natcasesort($pages);
+
+        return $pages;
+    }
+
+    private function collectMenuPages($items, array &$pages, string $parentSlug = ''): void
+    {
+        foreach ((array) $items as $item) {
+            if (!is_object($item) || empty($item->slug)) {
+                continue;
+            }
+
+            $slug = trim((string) $item->slug, '/');
+
+            // For subpages, store the full route: parent/child.
+            $fullSlug = $parentSlug !== '' ? $parentSlug . '/' . $slug : $slug;
+
+            $name = trim((string) ($item->name ?? $item->title ?? $slug));
+            $pages[$fullSlug] = $name !== '' ? $name : $fullSlug;
+
+            if (isset($item->subpages) && (is_object($item->subpages) || is_array($item->subpages))) {
+                $this->collectMenuPages($item->subpages, $pages, $fullSlug);
+            }
+        }
+    }
+
+    private function collectDatabasePages($items, array &$pages, string $parentSlug = ''): void
+    {
+        foreach ((array) $items as $slug => $page) {
+            if (!is_object($page)) {
+                continue;
+            }
+
+            $slug = trim((string) $slug, '/');
+            $fullSlug = $parentSlug !== '' ? $parentSlug . '/' . $slug : $slug;
+
+            $title = trim((string) ($page->title ?? $slug));
+            $pages[$fullSlug] = $title !== '' ? $title : $fullSlug;
+
+            if (isset($page->subpages) && (is_object($page->subpages) || is_array($page->subpages))) {
+                $this->collectDatabasePages($page->subpages, $pages, $fullSlug);
+            }
+        }
+    }
+
+    private function pageUrlFromSlug(string $slug): string
+    {
+        $slug = trim($slug);
+
+        if ($slug === '') {
+            return '';
+        }
+
+        // Keep external URLs working if someone already saved one in an older version.
+        if (preg_match('~^https?://~i', $slug)) {
+            return $slug;
+        }
+
+        $slug = ltrim($slug, '/');
+
+        if (class_exists('Wcms') && method_exists('Wcms', 'url')) {
+            return Wcms::url($slug);
+        }
+
+        return '/' . $slug;
+    }
+
     public function alterAdmin(array $args): array
     {
         // Populate default values on plugin initialization
@@ -208,11 +308,31 @@ class OlivaBanner
         $label->nodeValue = $this->t('labelMoreUrl');
         $form->appendChild($label);
 
-        $input = $doc->createElement('input');
-        $input->setAttribute('type', 'text');
+        $currentMoreUrl = trim((string) $this->getMoreUrl());
+        $pageOptions = $this->getAvailablePages();
+
+        $input = $doc->createElement('select');
         $input->setAttribute('name', 'oliva_more_url');
         $input->setAttribute('class', 'form-control');
-        $input->setAttribute('value', $this->getMoreUrl());
+
+        $emptyOption = $doc->createElement('option', '');
+        $emptyOption->setAttribute('value', '');
+        if ($currentMoreUrl === '') {
+            $emptyOption->setAttribute('selected', 'selected');
+        }
+        $input->appendChild($emptyOption);
+
+        foreach ($pageOptions as $slug => $name) {
+            $option = $doc->createElement('option', htmlspecialchars($name, ENT_QUOTES, 'UTF-8'));
+            $option->setAttribute('value', $slug);
+
+            if ($currentMoreUrl === $slug || trim($currentMoreUrl, '/') === $slug) {
+                $option->setAttribute('selected', 'selected');
+            }
+
+            $input->appendChild($option);
+        }
+
         $form->appendChild($input);
 
         // Close text
@@ -341,7 +461,7 @@ class OlivaBanner
 
         if (!empty($moreUrl) && !empty($moreText)) {
             $linkHtml = '    <a class="oliva-banner-notice__link" href="' 
-                . htmlspecialchars($moreUrl, ENT_QUOTES, 'UTF-8') . '">'
+                . htmlspecialchars($this->pageUrlFromSlug($moreUrl), ENT_QUOTES, 'UTF-8') . '">'
                 . htmlspecialchars($moreText, ENT_QUOTES, 'UTF-8') . '</a>' . PHP_EOL;
         }
 
