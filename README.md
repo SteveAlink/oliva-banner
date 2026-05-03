@@ -37,6 +37,11 @@ In the settings is an additional tab shown. It looks, in English, like this.
 
 The language depents on the language for admin as set on the Security Tab.
 
+## Download the plugin via
+```text
+https://raw.githubusercontent.com/SteveAlink/oliva-banner/main/wcms-modules.json
+```
+
 ## Versions
 1.2.0 03-May-2026 The page to jump to is now selectable.  
 1.1.0 01-May-2026 More languages included. Backend reacts to language setting in Security tab  
