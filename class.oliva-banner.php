@@ -444,7 +444,7 @@ class OlivaBanner
             $bannerText = trim($_POST['oliva_banner_text'] ?? 'Welcome to our site');
             $moreText = trim($_POST['oliva_more_text'] ?? 'More Information');
             $closeText = trim($_POST['oliva_close_text'] ?? 'Close');
-            $moreUrl = trim($_POST['oliva_more_url'] ?? 'bannerinfo');
+            $moreUrl = trim($_POST['oliva_more_url'] ?? 'hiddenMoreUrl');
             $bannerExpiry = trim($_POST['oliva_expiry_days'] ?? '180');
             $olivaLanguage = trim($_POST['oliva_language'] ?? 'en_US');
 
@@ -470,7 +470,7 @@ class OlivaBanner
 
         $linkHtml = '';
 
-        if (!empty($moreUrl) && !empty($moreText)) {
+        if ($moreUrl !== 'hiddenMoreUrl' && !empty($moreText)) {
             $linkHtml = '    <a class="oliva-banner-notice__link" href="' 
                 . htmlspecialchars($this->pageUrlFromSlug($moreUrl), ENT_QUOTES, 'UTF-8') . '">'
                 . htmlspecialchars($moreText, ENT_QUOTES, 'UTF-8') . '</a>' . PHP_EOL;
