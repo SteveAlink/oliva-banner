@@ -1,4 +1,11 @@
 # OlivaBanner for WonderCMS
+------------------------------------------------
+### DO NOT USE PLUGIN
+### BLANK PAGE IS ONLY RESULT
+### WIP
+### SORRY FOR ANY INCONVINIENCE
+------------------------------------------------
+
 By Steve Alink for Oliva Solutions
 
 Simple WonderCMS plugin that shows a banner.
