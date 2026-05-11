@@ -17,6 +17,17 @@ class OlivaBanner
         $this->Wcms = $Wcms;
     }
 
+    private function logDebug(string $debugText)
+    {
+        // Example usage
+        // $this->logDebug("Reached line: " . __LINE__);
+        error_log(
+            "[" . date('H:i:s') . "] " . $debugText . PHP_EOL,
+            3,
+            __DIR__ . '/debug.txt'
+        );
+    }
+
     private function loadTranslations()
     {
         $lang = $this->Wcms->get('config', 'adminLang');
@@ -73,9 +84,9 @@ class OlivaBanner
 
         // Default page name to use on link from More Text
         $moreUrl = $this->Wcms->get('config', 'olivaBannerMoreUrl');
-//        if (empty($moreUrl) || is_object($moreUrl)) {
-//           $this->Wcms->set('config', 'olivaBannerMoreUrl', $this->t('defaultMoreUrl'));
-//        }
+        if (empty($moreUrl) || is_object($moreUrl)) {
+           $this->Wcms->set('config', 'olivaBannerMoreUrl', $this->t('defaultMoreUrl'));
+        }
 
         // Check and populate the expiry days on the cookie in use
         $bannerExpiry = $this->Wcms->get('config', 'olivaBannerExpiryDays');
