@@ -326,12 +326,12 @@ class OlivaBanner
         $input->setAttribute('name', 'oliva_more_url');
         $input->setAttribute('class', 'form-control');
 
-        $emptyOption = $doc->createElement('option', '');
-        $emptyOption->setAttribute('value', '');
-        if ($currentMoreUrl === '') {
-            $emptyOption->setAttribute('selected', 'selected');
+        $hideOption = $doc->createElement('option', $this->t('hiddenMoreUrl'));
+        $hideOption->setAttribute('value', 'hiddenMoreUrl');
+        if ($currentMoreUrl === 'hiddenMoreUrl') {
+            $hideOption->setAttribute('selected', 'selected');
         }
-        $input->appendChild($emptyOption);
+        $input->appendChild($hideOption);
 
         foreach ($pageOptions as $slug => $name) {
             $option = $doc->createElement('option', htmlspecialchars($name, ENT_QUOTES, 'UTF-8'));
