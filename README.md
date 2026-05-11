@@ -50,6 +50,7 @@ https://raw.githubusercontent.com/SteveAlink/oliva-banner/main/wcms-modules.json
 ```
 
 ## Versions
+1.2.1 11-May-2026 Default page to jump to changed  
 1.2.0 03-May-2026 The page to jump to is now selectable.  
 1.1.0 01-May-2026 More languages included. Backend reacts to language setting in Security tab  
 1.0.1 29-Apr-2026 Initial version
