@@ -1,11 +1,4 @@
 # OlivaBanner for WonderCMS
-------------------------------------------------
-### DO NOT USE PLUGIN
-### BLANK PAGE IS ONLY RESULT
-### WIP
-### SORRY FOR ANY INCONVINIENCE
-------------------------------------------------
-
 By Steve Alink for Oliva Solutions
 
 Simple WonderCMS plugin that shows a banner.
@@ -40,7 +33,7 @@ The banner is shown in the footer.
 
 ## Preview of Settings
 In the settings is an additional tab shown. It looks, in English, like this.
-<img width="991" height="672" alt="WcmsOlivaBannerPreviewSettings" src="https://github.com/user-attachments/assets/884a2d6f-fef5-48d1-b812-21bdf634b243" />
+<img width="2004" height="1512" alt="WcmsOlivaBannerPreviewSettings" src="https://github.com/user-attachments/assets/d89fbe79-2c7f-462f-bf20-cfe08773ef1c" />
 
 The language depents on the language for admin as set on the Security Tab.
 
