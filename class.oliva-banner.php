@@ -286,19 +286,21 @@ class OlivaBanner
         $form->setAttribute('method', 'post');
         $form->setAttribute('action', ''); // important: post back to same admin page
 
-        $title = $doc->createElement('h2');
+        $title = $doc->createElement('p');
+        $title->setAttribute('class', 'subTitle');
         $title->nodeValue = $this->t('headingBannerSettings');
         $form->appendChild($title);
 
         // Banner text
-        $label = $doc->createElement('label');
+        $label = $doc->createElement('div');
         $label->nodeValue = $this->t('labelBannerText');
         $form->appendChild($label);
 
         $input = $doc->createElement('input');
         $input->setAttribute('type', 'text');
         $input->setAttribute('name', 'oliva_banner_text');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
         $input->setAttribute('value', $this->getBannerText());
         $form->appendChild($input);
 
@@ -310,7 +312,8 @@ class OlivaBanner
         $input = $doc->createElement('input');
         $input->setAttribute('type', 'text');
         $input->setAttribute('name', 'oliva_more_text');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
         $input->setAttribute('value', $this->getMoreText());
         $form->appendChild($input);
 
@@ -324,7 +327,8 @@ class OlivaBanner
 
         $input = $doc->createElement('select');
         $input->setAttribute('name', 'oliva_more_url');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
 
         $hideOption = $doc->createElement('option', $this->t('hiddenMoreUrl'));
         $hideOption->setAttribute('value', 'hiddenMoreUrl');
@@ -354,7 +358,8 @@ class OlivaBanner
         $input = $doc->createElement('input');
         $input->setAttribute('type', 'text');
         $input->setAttribute('name', 'oliva_close_text');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
         $input->setAttribute('value', $this->getCloseText());
         $form->appendChild($input);
 
@@ -367,17 +372,20 @@ class OlivaBanner
         $input = $doc->createElement('input');
         $input->setAttribute('type', 'text');
         $input->setAttribute('name', 'oliva_expiry_days');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
         $input->setAttribute('value', $this->getExpiryDays());
         $form->appendChild($input);
 */
         $saveButton = $doc->createElement('button');
         $saveButton->setAttribute('type', 'submit');
         $saveButton->setAttribute('name', 'saveOlivaSettings');
+        $saveButton->setAttribute('class', 'wbtn wbtn-info');
         $saveButton->nodeValue = $this->t('saveButton');
         $form->appendChild($saveButton);
 
-        $title = $doc->createElement('h2');
+        $title = $doc->createElement('p');
+        $title->setAttribute('class', 'subTitle');
         $title->nodeValue = $this->t('headingLanguageSettings');
         $form->appendChild($title);
 
@@ -400,7 +408,8 @@ class OlivaBanner
         // Generate the language dropdown options
         $input = $doc->createElement('select');
         $input->setAttribute('name', 'oliva_language');
-        $input->setAttribute('class', 'form-control');
+        $input->setAttribute('class', 'editText');
+        $input->setAttribute('style', 'width: 100%; border: 1px solid #ccc;');
         foreach ($languageOptions as $option) {
             $selectOption = $doc->createElement('option', $option);
             $selectOption->setAttribute('value', $option);
@@ -414,6 +423,7 @@ class OlivaBanner
         $saveButton = $doc->createElement('button');
         $saveButton->setAttribute('type', 'submit');
         $saveButton->setAttribute('name', 'saveOlivaSettings');
+        $saveButton->setAttribute('class', 'wbtn wbtn-info');
         $saveButton->nodeValue = $this->t('saveButton');
         $form->appendChild($saveButton);
 
