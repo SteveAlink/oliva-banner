@@ -1,13 +1,13 @@
 # OlivaBanner for WonderCMS
 By Steve Alink for Oliva Solutions
 
-Simple WonderCMS plugin that shows a banner.
+Simple WonderCMS plugin that shows a banner on the footer part of the front end.
 
-## Installation
-1. Copy the folder `oliva-banner` to your WonderCMS `plugins` folder.
-2. Make sure the path is: `plugins/oliva-banner/oliva-banner.php`.
-3. Refresh your website.
-4. Select the More information page in Oliva Settings, if you want to, that gives an extended explanation on the banner message
+## Usage
+Once installed, check the footer of your website. The banner, with default settings will show on each page.   
+Adjust the fields available to your likings.   
+Select the More information page in Oliva Settings, if you want to, that gives an extended explanation on the banner message.   
+A visitor can select the button to hide the banner for a given time.
 
 ## Language files
 Translations are stored in:  
@@ -35,7 +35,7 @@ The banner is shown in the footer.
 In the settings is an additional tab shown. It looks, in English, like this.
 <img width="2004" height="1512" alt="WcmsOlivaBannerPreviewSettings" src="https://github.com/user-attachments/assets/d89fbe79-2c7f-462f-bf20-cfe08773ef1c" />
 
-The language depents on the language for admin as set on the Security Tab.
+The language of the labels depents on the language for admin as set on the Security Tab.
 
 ## Download the plugin via
 ```text
